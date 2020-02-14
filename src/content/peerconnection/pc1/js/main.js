@@ -91,10 +91,10 @@ async function call() {
   }
   const configuration = getSelectedSdpSemantics();
   console.log('RTCPeerConnection configuration:', configuration);
-  pc1 = new RTCPeerConnection(configuration);
+  pc1 = new RTCPeerConnection({"iceServers": []}, { optional: [{ googDscp: true }] });
   console.log('Created local peer connection object pc1');
   pc1.addEventListener('icecandidate', e => onIceCandidate(pc1, e));
-  pc2 = new RTCPeerConnection(configuration);
+  pc2 = new RTCPeerConnection({"iceServers": []}, { optional: [{ googDscp: true }] });
   console.log('Created remote peer connection object pc2');
   pc2.addEventListener('icecandidate', e => onIceCandidate(pc2, e));
   pc1.addEventListener('iceconnectionstatechange', e => onIceStateChange(pc1, e));
